@@ -11,8 +11,14 @@ let countryResult3 = document.querySelector(".countriesResult3");
 let countryResult4 = document.querySelector(".countriesResult4");
 let countryResult5 = document.querySelector(".countriesResult5");
 let displayResult = document.querySelector(".click");
+let firstImg = document.querySelector(".img1").querySelector("img");
+let secondImg = document.querySelector(".img2").querySelector("img");
+let thirdImg = document.querySelector(".img3").querySelector("img");
+let fourthImg = document.querySelector(".img4").querySelector("img");
+let fifthImg = document.querySelector(".img5").querySelector("img");
 displayResult.addEventListener("click", (event) => {
   event.preventDefault();
+  clearing();
   let searchName = document.querySelector("#name").value;
   let getUserGender = new XMLHttpRequest();
   getUserGender.open("GET", baseURL1 + searchName);
@@ -34,23 +40,23 @@ displayResult.addEventListener("click", (event) => {
     let userNationalize = JSON.parse(getUserNational.responseText).country;
     let countryNames = userNationalize.map((countries) => countries.country_id);
     countryResult1.append(countryNames[0]);
-    let firstImg = document.querySelector(".img1").querySelector("img");
+    
     firstImg.src = baseURL4 + countryNames[0];
     document.querySelector(".img1").append(firstImg);
     countryResult2.append(countryNames[1]);
-    let secondImg = document.querySelector(".img2").querySelector("img");
+    
     secondImg.src = baseURL4 + countryNames[1];
     document.querySelector(".img2").append(secondImg);
     countryResult3.append(countryNames[2]);
-    let thirdImg = document.querySelector(".img3").querySelector("img");
+    
     thirdImg.src = baseURL4 + countryNames[2];
     document.querySelector(".img3").append(thirdImg);
     countryResult4.append(countryNames[3]);
-    let fourthImg = document.querySelector(".img4").querySelector("img");
+    
     fourthImg.src = baseURL4 + countryNames[3];
     document.querySelector(".img4").append(fourthImg);
     countryResult5.append(countryNames[4]);
-    let fifthImg = document.querySelector(".img5").querySelector("img");
+    
     fifthImg.src = baseURL4 + countryNames[4];
     document.querySelector(".img5").append(fifthImg);
   };
@@ -59,6 +65,45 @@ displayResult.addEventListener("click", (event) => {
   getUserGender.send();
   getUserAge.send();
 });
+
 clear.addEventListener("click", (_event) => {
-  ageResult.replace("");
+  _event.preventDefault();
+  ageResult.innerHTML='';
+  genderResult.innerHTML='';
+  countryResult1.innerHTML='';
+   countryResult2.innerHTML = "";
+    countryResult3.innerHTML = "";
+     countryResult4.innerHTML = "";
+      countryResult5.innerHTML = "";
+       firstImg.remove();
+        secondImg.remove();
+         thirdImg.remove();
+          fourthImg.remove();
+      fifthImg.remove();
 });
+function clearing() {
+  let gender = document.querySelector("table").querySelector(".genderResult");
+  let age = document.querySelector("table").querySelector(".ageResult");
+  let countries1 = document
+    .querySelector("table")
+    .querySelector(".countriesResult1");
+  let countries2 = document
+    .querySelector("table")
+    .querySelector(".countriesResult2");
+  let countries3 = document
+    .querySelector("table")
+    .querySelector(".countriesResult3");
+  let countries4 = document
+    .querySelector("table")
+    .querySelector(".countriesResult4");
+  let countries5 = document
+    .querySelector("table")
+    .querySelector(".countriesResult5");
+  gender.innerHTML = "";
+  age.innerHTML = "";
+  countries1.innerHTML = "";
+  countries2.innerHTML = "";
+  countries3.innerHTML = "";
+  countries4.innerHTML = "";
+  countries5.innerHTML = "";
+}
